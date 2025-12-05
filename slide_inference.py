@@ -53,7 +53,7 @@ def check_and_create_black_images(patch_dir, vis_dir):
         if not os.path.exists(vis_path):
             print(f"创建黑色图像：{vis_name}")
             create_black_image(os.path.join(vis_dir, vis_name))
-def run_pipeline(slide_path, model_path, temp_path, output_path, type):
+def run_pipeline(slide_path, model_path, temp_path, output_path, type, k):
     """Run the complete slide inference pipeline with timing for each step.
     
     Args:
@@ -140,7 +140,7 @@ def run_pipeline(slide_path, model_path, temp_path, output_path, type):
     vis_dir = os.path.join(temp_path, "vis")
     start_time = time.time()
 
-    batch_inference(normalized_dir, model_path, vis_dir, k=5, segment_path=segmented_dir, max_workers=4)
+    batch_inference(normalized_dir, model_path, vis_dir, k=k, segment_path=segmented_dir, max_workers=4)
 
     check_and_create_black_images(patch_dir, vis_dir)
 
@@ -186,11 +186,12 @@ def main():
     parser.add_argument("--temp_path", type=str, required=True, help="Path to store temporary files")
     parser.add_argument("--output_path", type=str, required=True, help="Path to save final outputs")
     parser.add_argument("--type", type=str, required=True, help="Type of the slide")
+    parser.add_argument("--k", type=int, default=5, help="Number of clusters")
     
     args = parser.parse_args()
     
     try:
-        run_pipeline(args.slide_path, args.model_path, args.temp_path, args.output_path, args.type)
+        run_pipeline(args.slide_path, args.model_path, args.temp_path, args.output_path, args.type, args.k)
     except Exception as e:
         print(f"Error running pipeline: {e}")
         sys.exit(1)

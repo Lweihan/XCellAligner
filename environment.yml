@@ -230,4 +230,3 @@ dependencies:
       - urllib3==2.5.0
       - wsi-normalizer==1.0.1
       - yacs==0.1.8
-prefix: /c22073/lwh/miniconda/envs/agliner
