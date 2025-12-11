@@ -107,4 +107,6 @@ class TransformerEncoder(nn.Module):
         # Final output
         x = self.final_output(x)  # [batch_size, max_cells, output_dim]
 
-        return cls_token_linear, x
+        logits = torch.sigmoid(x)
+
+        return cls_token_linear, x, logits

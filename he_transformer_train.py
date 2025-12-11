@@ -1,4 +1,5 @@
 import os
+import datetime
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -11,12 +12,13 @@ from tqdm import tqdm
 import random
 
 from utils import load_cellpose_model
-from dataset import CellDataset
+from dataset.CellDataset import CellDataset
 from models import TransformerEncoder
 from loss import ContrastiveLoss, InfoNCELoss
 from sklearn.cluster import KMeans
 from sklearn.model_selection import train_test_split
 import torch.nn.functional as F
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 # Try to import ctranpath, install if not available
 try:
@@ -24,7 +26,7 @@ try:
 except ImportError:
     raise ImportError("CTransPath module not found. Please install it from https://github.com/Xiyue-Wang/TransPath")
 
-def train_model(data_root, save_path, epochs=100, batch_size=16, learning_rate=1e-5, test_size=0.1, log_path="./log/training_log_11-26.txt"):
+def train_model(data_root, save_path, epochs=100, batch_size=16, learning_rate=1e-5, test_size=0.1):
     """Train the HE-Transformer model with contrastive learning"""
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"Using device: {device}")
@@ -58,7 +60,8 @@ def train_model(data_root, save_path, epochs=100, batch_size=16, learning_rate=1
     # Loss and optimizer
     # contrastive_criterion = ContrastiveLoss()
     contrastive_criterion = InfoNCELoss()
-    classification_criterion = nn.CrossEntropyLoss()  # CrossEntropyLoss for multi-class classification
+    # classification_criterion = nn.CrossEntropyLoss()  # CrossEntropyLoss for multi-class classification
+    classification_criterion = nn.BCEWithLogitsLoss()
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
     
     # Create dataset and dataloader
@@ -86,8 +89,10 @@ def train_model(data_root, save_path, epochs=100, batch_size=16, learning_rate=1
     test_loader = DataLoader(dataset, batch_size=batch_size, sampler=test_sampler)
 
     # Open log file for writing losses
+    current_date = datetime.datetime.now().strftime("%Y-%m-%d")
+    log_path = f"./log/training_log_{current_date}.txt"
     with open(log_path, "a") as log_file:
-        log_file.write("Epoch, Train Contrastive Loss, Train Classification Loss, Test Contrastive Loss, Test Classification Loss\n")  # Header for the log file
+        log_file.write("Epoch, Train Contrastive Loss, Train Classification Loss, Test Contrastive Loss, Test Classification Loss, Test Accuracy, Test Precision, Test Recall, Test F1\n")  # Header for the log file
     
         # Training loop
         best_loss = float('inf')
@@ -107,7 +112,7 @@ def train_model(data_root, save_path, epochs=100, batch_size=16, learning_rate=1
                 label_batch = label_batch.to(device)
                 
                 # Forward pass through transformer for the entire batch
-                cls_token, x = model(features_batch, mask_batch)  # x: [batch_size, max_cells, output_dim]
+                cls_token, x, logits = model(features_batch, mask_batch)  # x: [batch_size, max_cells, output_dim]
 
                 # Contrastive Learning Loss
                 feat1_list, feat2_list, pair_labels = [], [], []
@@ -176,7 +181,7 @@ def train_model(data_root, save_path, epochs=100, batch_size=16, learning_rate=1
                 classification_loss = classification_criterion(x_flat, valid_labels_flat)
 
                 # Total loss (contrastive + classification)
-                total_loss = contrastive_loss + classification_loss
+                total_loss = 0.5 * contrastive_loss + 2.5 * classification_loss
                 optimizer.zero_grad()
                 total_loss.backward()
                 optimizer.step()
@@ -202,13 +207,15 @@ def train_model(data_root, save_path, epochs=100, batch_size=16, learning_rate=1
             total_test_contrastive_loss = 0
             total_test_classification_loss = 0
             valid_test_batches = 0
+            all_preds = []
+            all_labels = []
             with torch.no_grad():
                 for features_batch, mask_batch, label_batch in tqdm(test_loader, desc=f'Epoch {epoch+1}/{epochs} - Evaluating'):
                     features_batch = features_batch.float().to(device)
                     mask_batch = mask_batch.float().to(device)
                     label_batch = label_batch.to(device)
 
-                    cls_token, x = model(features_batch, mask_batch)
+                    cls_token, x, logits = model(features_batch, mask_batch)
 
                     cell_feats = []
                     cell_labels = []
@@ -256,14 +263,25 @@ def train_model(data_root, save_path, epochs=100, batch_size=16, learning_rate=1
                     total_test_classification_loss += classification_loss.item()
                     valid_test_batches += 1
 
+                    # Collect predictions and true labels for evaluation
+                    pred_labels = torch.argmax(x_flat, dim=1)
+                    all_preds.extend(pred_labels.cpu().numpy())
+                    all_labels.extend(valid_labels_flat.cpu().numpy())
+
                 if valid_test_batches > 0:
                     avg_test_contrastive_loss = total_test_contrastive_loss / valid_test_batches
                     avg_test_classification_loss = total_test_classification_loss / valid_test_batches
-                    print(f'Epoch [{epoch+1}/{epochs}], Test Average Contrastive Loss: {avg_test_contrastive_loss:.4f}, Test Average Classification Loss: {avg_test_classification_loss:.4f}')
+
+                    accuracy = accuracy_score(all_labels, all_preds)
+                    precision = precision_score(all_labels, all_preds, average='macro', zero_division=0)
+                    recall = recall_score(all_labels, all_preds, average='macro', zero_division=0)
+                    f1 = f1_score(all_labels, all_preds, average='macro', zero_division=0)
+
+                    print(f'Epoch [{epoch+1}/{epochs}], Test Average Contrastive Loss: {avg_test_contrastive_loss:.4f}, Test Average Classification Loss: {avg_test_classification_loss:.4f}, Test Accuracy: {accuracy:.4f}, Test Precision: {precision:.4f}, Test Recall: {recall:.4f}, Test F1: {f1:.4f}')
                     
                     # Log test loss
                     with open(log_path, "a") as log_file:
-                        log_file.write(f"{avg_test_contrastive_loss:.4f}, {avg_test_classification_loss:.4f}\n")
+                        log_file.write(f"{avg_test_contrastive_loss:.4f}, {avg_test_classification_loss:.4f}, {accuracy:.4f}, {precision:.4f}, {recall:.4f}, {f1:.4f}\n")
                 
                 # Save the model only if the test loss is improved
                 if avg_test_contrastive_loss + avg_test_classification_loss < best_loss:

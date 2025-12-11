@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import argparse
 from collections import defaultdict
 from torchvision import transforms
-
+from torchvision.ops import roi_align
 from utils import load_cellpose_model, preprocess_image, build_cell_features
 from models import TransformerEncoder
 
@@ -18,59 +18,80 @@ try:
 except ImportError:
     raise ImportError("CTransPath module not found. Please install it from https://github.com/Xiyue-Wang/TransPath")
 
-def extract_cell_features_for_inference(image_path, cellpose_model, ctranspath_model, device):
+def extract_features_using_roi_align(image_path, cellpose_model, ctranspath_model, device, max_cells=255):
     """
-    提取细胞特征用于推理（不需要标签图）
-    
+    使用Cellpose的分割结果作为region proposal，使用ROI Align提取每个细胞的特征
     Args:
-        image_path: 图像路径
-        cellpose_model: Cellpose模型
+        image_path: 输入图像路径
+        cellpose_model: 细胞分割模型
         ctranspath_model: CTransPath模型
-        device: 设备
-    
+        device: 设备（CPU/GPU）
+        max_cells: 最大细胞数
     Returns:
         tuple: (cell_features, masks, original_image)
-               cell_features: 特征列表
-               masks: 分割掩码
+               cell_features: 提取的细胞特征
+               masks: 细胞掩码
                original_image: 原始图像
     """
     img = preprocess_image(image_path)
     
-    # 使用Cellpose进行细胞分割
-    masks, flows, styles = cellpose_model.eval(img, diameter=None, channels=[0, 0])
-
-    # 使用CTransPath模型进行编码
-    ctranspath_model.eval()  # 设置为评估模式
-
-    # CTransPath模型的预处理函数
-    preprocess = transforms.Compose([
+    # 使用Cellpose进行细胞分割，得到细胞掩码
+    masks, _, _ = cellpose_model.eval(img, diameter=None, channels=[0, 0])
+    
+    # 使用CTransPath提取全局特征
+    ctranspath_model.eval()
+    # 将img从numpy.ndarray转为PIL图像
+    image = Image.fromarray(img)
+    preprocess = transforms.Compose([ 
         transforms.Resize((224, 224)),
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
     ])
+    cell_img_tensor = preprocess(image).unsqueeze(0).to(device)
     
-    # 提取每个细胞的特征
+    with torch.no_grad():
+        # 提取整张图的特征
+        global_features = ctranspath_model(cell_img_tensor)
+    
+    # 确保global_features有空间维度
+    if global_features.dim() == 2:  # 如果是特征向量，则需要重塑
+        N, C = global_features.shape
+        global_features = global_features.view(N, C, 1, 1)  # 将其重塑为[N, C, 1, 1]形状
+    
+    # 对每个细胞区域使用ROI Align
     cell_features = []
     unique_masks = np.unique(masks)
     
     for label in unique_masks:
         if label == 0:
             continue  # 跳过背景
-            
+        
         # 获取细胞区域
         cell_mask = masks == label
-        cell_img = img * cell_mask[..., None]  # 通过掩码提取细胞区域
-        cell_img_pil = Image.fromarray(cell_img)
+        cell_mask_coords = np.column_stack(np.where(cell_mask))  # 获取细胞区域坐标
         
-        # 预处理并输入CTransPath模型
-        cell_img_tensor = preprocess(cell_img_pil).unsqueeze(0).to(device)
+        # 使用ROI Align提取特征
+        roi_boxes = np.array([[
+            0,  # batch_index
+            min(cell_mask_coords[:, 1]),  # xmin
+            min(cell_mask_coords[:, 0]),  # ymin
+            max(cell_mask_coords[:, 1]),  # xmax
+            max(cell_mask_coords[:, 0])   # ymax
+        ]])
+        
+        # 转为tensor并归一化为[0, 1]的范围
+        roi_boxes = torch.tensor(roi_boxes, dtype=torch.float32).to(device)  # [num_rois, 5]
+        
+        # Rescale global features to match image size (height, width)
+        global_features_resized = torch.nn.functional.interpolate(global_features, size=(image.size[1], image.size[0]), mode="bilinear", align_corners=False)
         
         with torch.no_grad():
-            # 使用 CTransPath 提取特征
-            features = ctranspath_model(cell_img_tensor)  # 得到细胞特征向量
-        
-        cell_features.append(features.squeeze().cpu().numpy())  # 获取特征并存储
-
+            # 使用ROI Align提取特征，output_size = (1, 1) 保证每个细胞区域得到一个 1000 维特征向量
+            roi_aligned_features = roi_align(global_features_resized, roi_boxes, output_size=(1, 1))  # (num_rois, 1000, 1, 1)
+            
+            # 这里是去除空间维度，保留 1000 维特征
+            cell_features.append(roi_aligned_features.squeeze().cpu().detach().numpy())  # 转换为numpy数组
+    
     return cell_features, masks, img
 
 def visualize_clusters(image, masks, cluster_labels, save_path, k):
@@ -135,10 +156,9 @@ def pad_features_to_max_cells(features, max_cells=255):
     mask[:num_cells] = 1
     return padded_features, mask
 
-def inference(image_path, model_path, save_path, k=5):
+def inference_with_roi_align(image_path, model_path, save_path, k=5):
     """
-    推理主函数
-    
+    推理主函数，使用ROI Align提取细胞特征进行聚类
     Args:
         image_path: 输入图像路径
         model_path: 训练好的模型路径
@@ -148,7 +168,7 @@ def inference(image_path, model_path, save_path, k=5):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"使用设备: {device}")
     
-    # 初始化模型
+    # 加载模型
     print("加载 Cellpose 模型...")
     cellpose_model = load_cellpose_model(model_type='cyto', gpu=torch.cuda.is_available())
     
@@ -156,31 +176,21 @@ def inference(image_path, model_path, save_path, k=5):
     ctranspath_model = ctranspath()
     ctranspath_model.to(device)
     
-    # 初始化我们的transformer模型
-    input_dim = 1000
-    hidden_dim = 512
-    n_heads = 4
-    num_layers = 6
-    output_dim = 8
-    max_cells = 255
-    
+    # 加载训练好的Transformer模型
     model = TransformerEncoder(
-        input_dim=input_dim,
-        hidden_dim=hidden_dim,
-        n_heads=n_heads,
-        num_layers=num_layers,
-        output_dim=output_dim,
-        max_cells=max_cells
+        input_dim=1000,
+        hidden_dim=512,
+        n_heads=4,
+        num_layers=6,
+        output_dim=8,
+        max_cells=255
     ).to(device)
-    
-    # 加载训练好的模型权重
-    print("加载训练好的模型权重...")
     model.load_state_dict(torch.load(model_path, map_location=device))
     model.eval()
     
     # 提取细胞特征
     print("提取细胞特征...")
-    cell_features, masks, original_image = extract_cell_features_for_inference(
+    cell_features, masks, original_image = extract_features_using_roi_align(
         image_path, cellpose_model, ctranspath_model, device)
     
     if len(cell_features) == 0:
@@ -191,7 +201,7 @@ def inference(image_path, model_path, save_path, k=5):
     
     # 准备特征数据并填充到固定长度
     features_array = np.array(cell_features)
-    padded_features, mask = pad_features_to_max_cells(features_array, max_cells)
+    padded_features, mask = pad_features_to_max_cells(features_array, max_cells=255)
     
     # 添加batch维度
     padded_features = torch.tensor(padded_features, dtype=torch.float32).unsqueeze(0).to(device)  # [1, max_cells, input_dim]
@@ -211,34 +221,24 @@ def inference(image_path, model_path, save_path, k=5):
     kmeans = KMeans(n_clusters=k, random_state=42)
     enhanced_features = build_cell_features(original_image, masks, valid_features)
     cluster_labels = kmeans.fit_predict(enhanced_features)
-
-    for i in range(len(cell_features)):
-        print(f"细胞 {i+1} 聚类结果: {cluster_labels[i]+1}")
-        print(f"细胞 {i+1} 聚类概率: {valid_logits[i]}")
     
     # 可视化结果
     print("可视化聚类结果...")
     visualize_clusters(original_image, masks, cluster_labels, save_path, k)
     
-    # 输出每个细胞的聚类结果
-    print("\n细胞聚类结果:")
-    for i, label in enumerate(cluster_labels):
-        print(f"细胞 {i+1}: 聚类 {label+1}")
+    print("推理完成。")
 
+# 运行推理
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='HE-Transformer 推理')
-    parser.add_argument('--image_path', type=str, required=True, 
-                        help='输入图像路径')
-    parser.add_argument('--model_path', type=str, required=True,
-                        help='训练好的模型路径')
-    parser.add_argument('--save_path', type=str, required=True,
-                        help='结果保存路径')
-    parser.add_argument('--k', type=int, default=5,
-                        help='聚类数')
+    parser = argparse.ArgumentParser(description='基于ROI Align提取细胞特征的推理')
+    parser.add_argument('--image_path', type=str, required=True, help='输入图像路径')
+    parser.add_argument('--model_path', type=str, required=True, help='训练好的模型路径')
+    parser.add_argument('--save_path', type=str, required=True, help='结果保存路径')
+    parser.add_argument('--k', type=int, default=5, help='聚类数')
     
     args = parser.parse_args()
     
-    inference(
+    inference_with_roi_align(
         image_path=args.image_path,
         model_path=args.model_path,
         save_path=args.save_path,
