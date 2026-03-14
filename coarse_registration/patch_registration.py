@@ -180,7 +180,7 @@ def map_patch_dapi_to_he(
             return empty_img, (0, 0, 512, 512)
 
         # 裁剪图像
-        he_patch_img = Image.fromarray(he_slide).crop((min_x, min_y, max_x, max_y))
+        he_patch_img = he_slide.crop((min_x, min_y, max_x, max_y))
         
         # 调整大小
         he_patch_img = he_patch_img.resize((512, 512), resample=Image.BILINEAR)
@@ -214,7 +214,7 @@ def calculate_similarity(image1, image2):
         return 0.0  # 返回默认相似度值
 
 # === 批量处理并使用多线程 ===
-def process_patch_standalone(coord, dapi_pil, he_slide, result, resized_width, resized_height, save_dir, patch_size=512, similarity_threshold=0.8):
+def process_patch_standalone(coord, dapi_pil, he_slide, result, resized_width, resized_height, he_orig_size, save_dir, patch_size=512, similarity_threshold=0.8):
     start_time = time.time()
     dapi_patch_x, dapi_patch_y = coord["x"], coord["y"]
 
@@ -241,7 +241,7 @@ def process_patch_standalone(coord, dapi_pil, he_slide, result, resized_width, r
             dapi_thumb_size=(resized_width, resized_height),
             dapi_orig_size=(dapi_pil.width, dapi_pil.height),  # 使用原始尺寸而不是裁剪后的
             he_thumb_size=(resized_width, resized_height),
-            he_orig_size=he_slide.shape[:2]
+            he_orig_size=he_orig_size
         )
         thread_safe_print(f"⏱️ 坐标 ({dapi_patch_x}, {dapi_patch_y}) - 映射DAPI到HE耗时: {time.time() - step_start:.4f}s")
 
@@ -279,6 +279,7 @@ def main(args):
     thread_safe_print("开始加载图像...")
     dapi_img = tifffile.imread(args.dapi_img_path)
     he_slide = tifffile.imread(args.he_slide_path)
+    he_orig_size = he_slide.shape[:2]
 
     dapi_pil = Image.fromarray(dapi_img)
     he_img = Image.fromarray(he_slide)
@@ -310,7 +311,7 @@ def main(args):
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         # 提交所有任务
         future_to_coord = {
-            executor.submit(process_patch_standalone, coord, dapi_pil, he_slide, result, resized_width, resized_height, args.save_dir): coord 
+            executor.submit(process_patch_standalone, coord, dapi_pil, he_img, result, resized_width, resized_height, he_orig_size, args.save_dir): coord 
             for coord in coords_list
         }
         

@@ -23,22 +23,52 @@ def parse_args():
 # ===================== #
 
 def save_patch(img_name, img, save_subdir, coords, patch_size, save_dir, channel_index, progress_callback=None):
-    """保存单张图像的所有 patch"""
+    """保存单张图像的所有 patch（如果文件不存在）"""
     sub_path = os.path.join(save_dir, save_subdir)
     os.makedirs(sub_path, exist_ok=True)
     
     for (x, y) in coords:
+        save_path = os.path.join(sub_path, f"mF{channel_index}_x{x}_y{y}.png")
+        
+        # ✅ 如果文件已存在，跳过保存，但仍计入进度
+        if os.path.exists(save_path):
+            if progress_callback:
+                progress_callback()
+            continue
+        
+        # 确保 patch 不超出图像边界
+        if x + patch_size > img.shape[1] or y + patch_size > img.shape[0]:
+            # 如果超出边界，记录错误并继续
+            print(f"警告: patch 超出图像边界，跳过：{save_path}")
+            if progress_callback:
+                progress_callback()
+            continue
+        
         patch = img[y:y+patch_size, x:x+patch_size]
+        
         # 确保图像是正确的数据类型
         if patch.dtype != np.uint8:
-            # 归一化到0-255范围并转换为uint8
-            patch = ((patch - patch.min()) / (patch.max() - patch.min()) * 255).astype(np.uint8)
+            # 避免除零错误
+            patch_min = patch.min()
+            patch_max = patch.max()
+            if patch_max == patch_min:
+                patch = np.zeros_like(patch, dtype=np.uint8)
+            else:
+                patch = ((patch - patch_min) / (patch_max - patch_min) * 255).astype(np.uint8)
         
-        # 使用PIL.Image保存PNG图像
-        save_path = os.path.join(sub_path, f"mF{channel_index}_x{x}_y{y}.png")
-        Image.fromarray(patch).save(save_path)
+        # 使用PIL.Image保存PNG图像，捕获保存过程中的异常
+        try:
+            Image.fromarray(patch).save(save_path)
+        except Exception as e:
+            # 如果发生异常，记录错误并继续
+            print(f"错误: 无法保存图像 {save_path}，错误: {e}")
+        
         if progress_callback:
             progress_callback()
+
+# ===================== #
+# ====== 主函数 ===== #
+# ===================== #
 
 def main():
     # 解析命令行输入的参数
@@ -61,7 +91,7 @@ def main():
     images = {}
 
     # 读取所有图像并存储在字典中
-    for img_file in image_files:
+    for img_file in tqdm(image_files, desc="开始读取"):
         img_path = os.path.join(input_dir, img_file)
         img_name = os.path.splitext(img_file)[0]
         images[img_name] = tifffile.imread(img_path)
@@ -71,17 +101,18 @@ def main():
     
     # 生成所有 patch 的坐标
     coords = []
-    for y in range(0, h - patch_size + 1, patch_size):
-        for x in range(0, w - patch_size + 1, patch_size):
-            coords.append({"x": x, "y": y})
+    for y in range(0, h, patch_size):
+        for x in range(0, w, patch_size):
+            if y + patch_size <= h and x + patch_size <= w:
+                coords.append({"x": x, "y": y})
 
-    # 保存坐标 JSON 文件
+    # 保存坐标 JSON 文件（始终保存，无论图像是否已存在）
     json_path = os.path.join(save_dir, "patch_coords.json")
     with open(json_path, "w") as f:
         json.dump(coords, f, indent=2)
     print(f"✅ 坐标已保存到: {json_path}, 共 {len(coords)} 个 patch")
 
-    # 总 patch 数量
+    # 总 patch 数量（用于进度条）
     total_patches = len(coords) * len(images)
 
     # 使用多线程并行保存每个通道的 patch，并显示总体进度
@@ -105,7 +136,7 @@ def main():
         for future in as_completed(futures):
             future.result()
 
-    print("✅ 所有通道的 patch 已保存完成！")
+    print("✅ 所有通道的 patch 已处理完成（已存在的文件已跳过）！")
 
 if __name__ == "__main__":
     main()

@@ -8,9 +8,18 @@ from cellpose import models
 from PIL import Image
 from module.TransPath.ctran import ctranspath
 
-def load_cellpose_model(model_type='cyto', gpu=True):
-    model = models.CellposeModel(pretrained_model=model_type, gpu=True)
-    return model
+def load_cellpose_model(model_type='cyto2', device=None):
+    from cellpose import models
+    if device is not None and 'cuda' in str(device):
+        gpu = True
+    else:
+        gpu = False
+        device = None  # CellposeModel expects device=None for CPU
+    return models.CellposeModel(
+        gpu=gpu,
+        pretrained_model=model_type,
+        device=device
+    )
 
 def preprocess_image(image_path):
     img = Image.open(image_path).convert('RGB')

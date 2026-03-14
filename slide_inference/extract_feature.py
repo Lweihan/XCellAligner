@@ -291,7 +291,7 @@ def process_single_image(image_path, model_path, device, k=5, segment_mask=None)
     # 使用模型进行推理
     print("使用模型进行推理...")
     with torch.no_grad():
-        cls_output, model_output = model(padded_features, mask_tensor)
+        cls_output, model_output, logits = model(padded_features, mask_tensor)
     
     # 提取有效的细胞特征（去除填充部分）
     valid_features = model_output[0, :len(cell_features)].cpu().numpy()  # [num_cells, output_dim]
@@ -324,7 +324,7 @@ def process_single_image(image_path, model_path, device, k=5, segment_mask=None)
     
     return masks, enhanced_features, os.path.basename(image_path), image_path
 
-def batch_inference(input_folder, model_path, output_folder, k=5, segment_path=None, max_workers=2):
+def batch_inference(input_folder, model_path, output_folder, k=5, max_workers=2):
     """
     批量推理主函数
     
@@ -369,28 +369,6 @@ def batch_inference(input_folder, model_path, output_folder, k=5, segment_path=N
         for i, image_path in enumerate(image_files):
             print(f"[{i+1}/{len(image_files)}] 准备处理图像: {os.path.basename(image_path)}")
             
-            # 如果提供了语义分割路径，则加载对应的分割结果
-            segment_mask = None
-            if segment_path is not None:
-                # 构建语义分割文件路径（与图像文件同名但可能在不同目录下）
-                base_name = os.path.splitext(os.path.basename(image_path))[0]
-                segment_file = None
-                
-                # 尝试不同的扩展名
-                for ext in ['.png', '.jpg', '.jpeg', '.bmp', '.tif', '.tiff']:
-                    potential_path = os.path.join(segment_path, base_name + ext)
-                    if os.path.exists(potential_path):
-                        segment_file = potential_path
-                        break
-                
-                if segment_file is not None and os.path.exists(segment_file):
-                    # 加载语义分割结果（灰度图）
-                    segment_img = Image.open(segment_file).convert('L')
-                    segment_mask = np.array(segment_img)
-                    print(f"已加载语义分割结果: {os.path.basename(segment_file)}")
-                else:
-                    print(f"警告: 未找到对应的语义分割文件: {base_name}")
-            
             # 提交任务到线程池
             future = executor.submit(process_single_image, image_path, model_path, device, k, segment_mask)
             future_to_image[future] = (image_path, segment_mask)
@@ -426,11 +404,33 @@ def batch_inference(input_folder, model_path, output_folder, k=5, segment_path=N
     print("正在从磁盘加载所有特征...")
     all_features = []
     feature_files = [os.path.join(temp_features_dir, f) for f in os.listdir(temp_features_dir) if f.startswith("features_")]
-    
+    all_features = []
+
     for feature_file in feature_files:
         batch_features = np.load(feature_file)
-        if batch_features.ndim == 2:  # 确保特征数组是二维的
-            all_features.append(batch_features)
+
+        # 只处理二维特征
+        if batch_features.ndim != 2:
+            print(f"跳过非二维特征文件: {feature_file}, shape={batch_features.shape}")
+            continue
+
+        feature_dim = batch_features.shape[1]
+
+        # 8 维 -> 补 0 成 9 维
+        if feature_dim == 8:
+            pad = np.zeros((batch_features.shape[0], 1), dtype=batch_features.dtype)
+            batch_features = np.concatenate([batch_features, pad], axis=1)
+
+        # 9 维 -> 直接使用
+        elif feature_dim == 9:
+            pass
+
+        # 其他维度 -> 跳过
+        else:
+            print(f"跳过异常维度特征文件: {feature_file}, shape={batch_features.shape}")
+            continue
+
+        all_features.append(batch_features)
     
     if len(all_features) == 0:
         print("没有找到任何特征文件")
@@ -458,23 +458,7 @@ def batch_inference(input_folder, model_path, output_folder, k=5, segment_path=N
             
             enhanced_features = np.load(features_file)
             
-            # 重新处理图像以获取掩码（我们不再保存掩码）
-            segment_mask = None
-            if segment_path is not None:
-                base_name = os.path.splitext(image_name)[0]
-                segment_file = None
-                
-                # 尝试不同的扩展名
-                for ext in ['.png', '.jpg', '.jpeg', '.bmp', '.tif', '.tiff']:
-                    potential_path = os.path.join(segment_path, base_name + ext)
-                    if os.path.exists(potential_path):
-                        segment_file = potential_path
-                        break
-                
-                if segment_file is not None and os.path.exists(segment_file):
-                    # 加载语义分割结果（灰度图）
-                    segment_img = Image.open(segment_file).convert('L')
-                    segment_mask = np.array(segment_img)
+            base_name = os.path.splitext(image_name)[0]
             
             # 获取当前图像的聚类标签
             current_clusters = clusters[cluster_idx:cluster_idx+len(enhanced_features)]

@@ -1,4 +1,5 @@
-from timm.models.layers.helpers import to_2tuple
+# from timm.models.layers.helpers import to_2tuple
+from timm.layers import to_2tuple
 import timm
 import torch.nn as nn
 

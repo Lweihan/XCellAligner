@@ -12,7 +12,7 @@ def rename_patch(slide_path, src_dir, case_id="case"):
     else:
         slide = openslide.OpenSlide(slide_path)
     slide_w, slide_h = slide.dimensions
-    patch_size = 1024
+    patch_size = 512
     slide.close()
     n_cols = math.ceil(slide_w / patch_size)
     n_rows = math.ceil(slide_h / patch_size)

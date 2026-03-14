@@ -2,6 +2,7 @@ import os
 import numpy as np
 import openslide
 import math
+import tifffile
 import pyvips
 from PIL import Image
 from math import ceil
@@ -31,62 +32,94 @@ def extract_coords_from_filename(filename):
     coords = filename.replace(".png", "").split('_')[1:3]  # 假设文件名为 patch_x_y.png
     return int(coords[0]), int(coords[1])
 
-def stitch_patches_to_svs(slide_path, patch_dir, out_path, patch_size=1024):
+def calculate_pyramid_levels(width, height, min_level_size=256):
     """
-    从 patch 生成完整的 SVS 图像并保存
+    计算需要的金字塔层级数量
     """
-    # 打开原始病理切片图像
-    slide = open_slide(slide_path)
-    full_width, full_height = slide.dimensions
+    levels = 1  # 至少有一层（原始层）
+    current_width, current_height = width, height
     
-    # 获取所有 patch 文件并按坐标排序
+    while current_width > min_level_size and current_height > min_level_size:
+        current_width //= 2
+        current_height //= 2
+        levels += 1
+        
+    return levels
+
+def stitch_patches_to_multilevel_tiff_alternative(slide_path, patch_dir, out_path, patch_size=1024):
+    """
+    替代方法：使用传统的pyvips金字塔保存
+    """
+    # 读取整体尺寸
+    _, ext = os.path.splitext(slide_path)
+    if ext.lower() in ['.tiff', '.tif']:
+        with tifffile.TiffFile(slide_path) as tif:
+            page = tif.pages[0]
+            full_height, full_width = page.shape[0], page.shape[1]
+    else:
+        slide = openslide.OpenSlide(slide_path)
+        full_width, full_height = slide.dimensions
+        slide.close()
+
+    print(f"Adjusted dimensions: {full_width} x {full_height}")
+    
+    # 获取所有 patch 并基于其坐标信息进行排序
     files = [f for f in os.listdir(patch_dir) if f.endswith(".png")]
+    print(f"Found {len(files)} patches")
     sorted_files = sorted(files, key=lambda x: extract_coords_from_filename(x))
 
     cols = ceil(full_width / patch_size)
-    rows_imgs = []
 
-    for r in range(ceil(full_height / patch_size)):
+    rows_imgs = []
+    for r in tqdm(range(ceil(full_height / patch_size)), desc="拼接行"):
         row_imgs = []
         for c in range(cols):
             idx = r * cols + c
             if idx >= len(sorted_files):
-                # 如果没有足够的 patch，使用白色空白图像填充
-                blank = np.ones((patch_size, patch_size, 3), dtype=np.uint8) * 255
+                # 用空白 patch 填充（防止最后一行/列不足）
+                blank = pyvips.Image.black(patch_size, patch_size).cast("uchar")
                 row_imgs.append(blank)
             else:
-                # 打开并裁剪每个 patch 图像
                 fname = sorted_files[idx]
-                img = Image.open(os.path.join(patch_dir, fname))
-                img = img.crop((0, 0, min(patch_size, full_width - c * patch_size),
-                                min(patch_size, full_height - r * patch_size)))
-                row_imgs.append(np.array(img))  # 转换为 NumPy 数组以便拼接
-        rows_imgs.append(np.concatenate(row_imgs, axis=1))  # 横向拼接
+                img_path = os.path.join(patch_dir, fname)
+                
+                img = pyvips.Image.new_from_file(img_path)
 
-    # 纵向拼接
-    big_img = np.concatenate(rows_imgs, axis=0)
+                img = img.crop(
+                    0, 0,
+                    min(patch_size, full_width - c * patch_size),
+                    min(patch_size, full_height - r * patch_size)
+                )
 
-    # 使用 PIL 重新创建图像对象
-    big_img_pil = Image.fromarray(big_img)
+                row_imgs.append(img)
+        
+        # 横向拼接当前行的所有patch
+        if row_imgs:
+            rows_imgs.append(pyvips.Image.arrayjoin(row_imgs, across=len(row_imgs)))
 
-    # 创建金字塔结构
-    pyramid_images = []
-    current_img = big_img_pil
-    while current_img.width > 256 and current_img.height > 256:
-        pyramid_images.append(current_img)
-        current_img = current_img.resize((current_img.width // 2, current_img.height // 2), Image.ANTIALIAS)
-
-    # 最小层（最小分辨率）
-    pyramid_images.append(current_img)
-
-    # 保存为多层金字塔 TIFF 文件
-    big_img_pil.save(
-        out_path,
-        format="TIFF",
-        save_all=True,
-        append_images=pyramid_images[1:],  # 附加其他分辨率层
-        compression="jpeg",
-        tile=(128, 128),
-        resolution=96,  # 每英寸的像素数
-        dpi=(96, 96)  # 设置 DPI
-    )
+    # 纵向拼接所有行
+    if rows_imgs:
+        big_img = pyvips.Image.arrayjoin(rows_imgs, across=1)
+        
+        # 裁剪到原始尺寸
+        big_img = big_img.crop(0, 0, full_width, full_height)
+        
+        print(f"Final image size: {big_img.width} x {big_img.height}")
+        
+        if big_img.format != pyvips.enums.BandFormat.UCHAR:
+            big_img = big_img.cast("uchar")
+        
+        big_img.tiffsave(
+            out_path,
+            bigtiff=True,
+            pyramid=True,
+            tile=True,
+            compression="jpeg",
+            Q=80,
+            tile_width=256,
+            tile_height=256,
+            # 关键：使用最近邻插值保持像素值不变
+            region_shrink="nearest"
+        )
+        
+        print(f"Successfully saved multi-level TIFF to {out_path}")

@@ -30,7 +30,7 @@ class CellDensityExtractor:
         self.nuclei_diam = nuclei_diam
         self.cell_diam = cell_diam
     
-    def extract_nuclei_centers(self, image):
+    def extract_nuclei_centers(self, image, cell_masks):
         """
         Extract nuclei centers using Cellpose.
         
@@ -41,7 +41,10 @@ class CellDensityExtractor:
             list: List of (y, x) coordinates for nuclei centers
         """
         # Run Cellpose segmentation
-        masks, flows, styles = self.cellpose_model.eval(image, diameter=None, channels=[0, 0])
+        if cell_masks is None:
+            masks, flows, styles = self.cellpose_model.eval(image, diameter=None, channels=[0, 0])
+        else:
+            masks = cell_masks
         
         # Find unique cell IDs (excluding background)
         unique_masks = np.unique(masks)
@@ -87,18 +90,20 @@ class CellDensityExtractor:
             region_gray = np.mean(region, axis=2)
         else:
             region_gray = region
-            
-        # Calculate proportion of pixels with grayscale > 0.5
-        total_pixels = region_gray.size
-        if total_pixels == 0:
-            return 0.0
-            
-        high_density_pixels = np.sum(region_gray > 0.5)
-        proportion = high_density_pixels / total_pixels
         
-        return proportion
-    
-    def process_image_pair(self, images, flags):
+        threshold = 0.5
+        above_threshold_mask = region_gray > threshold
+        weighted_sum = np.sum(region_gray[above_threshold_mask])
+        total_pixels = region_gray.size
+        total_sum = total_pixels * 255
+        
+        if total_sum == 0:
+            return 0.0
+        result = (weighted_sum / total_sum) * 20
+        
+        return min(result, 1.0)
+        
+    def process_image_pair(self, images, flags, cell_masks=None):
         """
         Process a pair of images to extract cell density features.
         
@@ -113,7 +118,7 @@ class CellDensityExtractor:
             raise ValueError("Number of images must match number of flags")
             
         # Extract nuclei centers from the first image
-        centers, masks = self.extract_nuclei_centers(images[0])
+        centers, masks = self.extract_nuclei_centers(images[0], cell_masks)
         m = len(centers)  # Number of cells
         
         if m == 0:
