@@ -4,7 +4,7 @@
 
 Cross-modal cell alignment between hematoxylin-and-eosin (H&E) and multiplex immunofluorescence (mIF) images is crucial for leveraging protein marker–driven annotations to enhance H&E-based pathology analysis. However, H&E and mIF are typically acquired from adjacent tissue sections, which—due to physical sectioning—are inherently unregistrable and share no pixel-wise cell correspondence. To address this gap, we propose XCellAligner, a novel framework designed for cell-level semantic alignment between H&E and mIF images. Our approach avoids the need for manual annotation by first aligning modality-level representations using contrastive learning on aggregated cell tokens. It then refines the cell-to-cell correspondence through fine-grained matching, utilizing Hungarian loss guided by the discriminative features of mIF. XCellAligner is fully unsupervised, and its extracted cellular features exhibit high discriminative power, achieving state-of-the-art performance in downstream tasks such as classification, segmentation, and visual question answering. Furthermore, this method demonstrates strong generalization ability to previously unseen tumor types and tissue sites, providing a practical foundation for tumor microenvironment analysis.
 
-![demo](experuments/generate.png)
+![demo](https://github.com/Lweihan/XCellAligner/blob/main/experiments/generate.png)
 
 ### Installation
 ```shell
