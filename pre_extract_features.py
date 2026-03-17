@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import logging
 from skimage import io
+import torch.nn.functional as F
 from torchvision import transforms
 import multiprocessing as mp
 from tqdm import tqdm
@@ -149,16 +150,6 @@ def mif_cache_path(cache_dir, mif_paths):
 
 #     except Exception as e:
 #         logger.exception(f"[FAIL] HE extraction failed: {he_path} | {e}")
-
-import os
-import pickle
-import numpy as np
-import torch
-import torch.nn.functional as F
-from torchvision import transforms
-from PIL import Image
-# 假设 io 是 imageio 或其他图像处理库，根据实际环境导入
-# import imageio.v2 as io 
 
 def extract_he_feature(he_path, cache_dir, device, cellpose_model, ctp_model, logger, masks=None):
     """
@@ -360,7 +351,7 @@ def gpu_worker(
     cellpose_model = load_cellpose_model(device=device)
     ctp_model = ctranspath().to(device)
     if hasattr(ctp_model, 'head'):
-            ctp_model.head = torch.nn.Identity()
+        ctp_model.head = torch.nn.Identity()
     ctp_model.eval()
     extractor = CellDensityExtractor()
 
