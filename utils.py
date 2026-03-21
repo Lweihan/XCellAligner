@@ -12,13 +12,15 @@ def load_cellpose_model(model_type='cyto2', device=None):
     from cellpose import models
     if device is not None and 'cuda' in str(device):
         gpu = True
+        # Cellpose 期望 torch 设备对象，不是整数
+        cellpose_device = device
     else:
         gpu = False
-        device = None  # CellposeModel expects device=None for CPU
+        cellpose_device = None
     return models.CellposeModel(
         gpu=gpu,
         pretrained_model=model_type,
-        device=device
+        device=cellpose_device
     )
 
 def preprocess_image(image_path):

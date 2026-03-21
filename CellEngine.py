@@ -10,7 +10,7 @@ from typing import List, Tuple, Optional, Union
 
 # 假设这些模块在你的环境中可用，如果路径不同请调整
 from utils import load_cellpose_model 
-from .XCellFormer import XCellFormer
+from XCellFormer import XCellFormer
 try:
     from module.TransPath.ctran import ctranspath
 except ImportError:
@@ -42,10 +42,13 @@ class CellInferenceEngine:
         print("[InferenceEngine] Loading Cellpose...")
         try:
             self.cellpose_model = load_cellpose_model(model_type=cellpose_model_path or 'cyto', device=self.device)
+            # 存储模型类型用于多GPU处理
+            self.cellpose_model_type = cellpose_model_path or 'cyto'
         except ImportError:
             # 备用方案：直接导入 cellpose (需安装 cellpose 包)
             from cellpose import models
             self.cellpose_model = models.Cellpose(model_type='cyto', gpu=(self.device.type=='cuda'))
+            self.cellpose_model_type = 'cyto'
 
         # 2. 加载 CTransPath
         print("[InferenceEngine] Loading CTransPath...")
@@ -130,19 +133,30 @@ class CellInferenceEngine:
         针对每个细胞提取 CTransPath 特征。
         返回: (cell_features_list, masks_array)
         """
+        import time
+        
         cell_features = []
+        # Create a new mask to guarantee contiguous labels matching the feature list
+        new_masks = np.zeros_like(masks, dtype=np.int32)
+        valid_label_idx = 1
+        
         masks_tensor = torch.from_numpy(masks).to(self.device).to(torch.int32)
         unique_labels = torch.unique(masks_tensor)
         unique_labels = unique_labels[unique_labels != 0]
 
         if len(unique_labels) == 0:
-            return [], masks
+            print(f"[{time.strftime('%H:%M:%S')}] 未检测到细胞")
+            return [], new_masks
 
+        print(f"[{time.strftime('%H:%M:%S')}] 开始处理 {len(unique_labels)} 个细胞的特征提取")
+        
         # 计算全局最大面积用于归一化
         max_area = (masks_tensor > 0).sum().float()
         if max_area == 0: max_area = torch.tensor(1.0, device=self.device)
 
-        for label in unique_labels:
+        for idx, label in enumerate(unique_labels):
+            if idx % 100 == 0:  # 每100个细胞输出一次进度
+                print(f"[{time.strftime('%H:%M:%S')}] 处理细胞进度: {idx}/{len(unique_labels)}")
             cell_mask = (masks_tensor == label).float()
             cell_area = cell_mask.sum()
             
@@ -206,6 +220,9 @@ class CellInferenceEngine:
                     final_feat = modulated_feat.cpu().numpy()
                     
                     cell_features.append(final_feat)
+                    # 将该细胞在新 mask 中设为递增且连续的 ID，保证与 feature index 一一对应!
+                    new_masks[masks == label.item()] = valid_label_idx
+                    valid_label_idx += 1
                     
                 else:
                     # 如果输出维度不对，跳过
@@ -214,7 +231,7 @@ class CellInferenceEngine:
                 print(f"Warning: Feature extraction failed for cell {label}: {e}")
                 continue
 
-        return cell_features, masks
+        return cell_features, new_masks
 
     def _pad_features(self, features: List[np.ndarray], max_cells: int = 512) -> Tuple[torch.Tensor, torch.Tensor]:
         """填充特征到固定长度"""
@@ -225,11 +242,12 @@ class CellInferenceEngine:
         
         features_array = np.array(features)
         num_cells = features_array.shape[0]
+        target_cells = max_cells if num_cells <= max_cells else num_cells
         
-        padded_features = np.zeros((max_cells, features_array.shape[1]))
+        padded_features = np.zeros((target_cells, features_array.shape[1]))
         padded_features[:num_cells] = features_array
         
-        mask = np.zeros(max_cells)
+        mask = np.zeros(target_cells)
         mask[:num_cells] = 1.0
         
         x_tensor = torch.tensor(padded_features, dtype=torch.float32).unsqueeze(0).to(self.device)
@@ -257,10 +275,17 @@ class CellInferenceEngine:
             }
         """
         if cell_features_list is None:
+            import time
+            
             # 1. 加载并清洗图像
+            print(f"[{time.strftime('%H:%M:%S')}] 开始加载图像...")
+            start_time = time.time()
+            
             if isinstance(image_source, str):
+                print(f"[{time.strftime('%H:%M:%S')}] 从文件加载图像: {image_source}")
                 img_np = io.imread(image_source)
                 img_pil = Image.open(image_source).convert("RGB")
+                print(f"[{time.strftime('%H:%M:%S')}] 图像尺寸: {img_np.shape}")
             elif isinstance(image_source, np.ndarray):
                 img_np = image_source
                 img_pil = Image.fromarray(img_np).convert("RGB") if img_np.ndim == 3 else Image.fromarray(img_np).convert("L").convert("RGB")
@@ -270,22 +295,36 @@ class CellInferenceEngine:
             else:
                 raise ValueError("Unsupported image source type")
     
+            print(f"[{time.strftime('%H:%M:%S')}] 图像加载完成，耗时: {time.time() - start_time:.2f}秒")
+            
+            print(f"[{time.strftime('%H:%M:%S')}] 开始预处理图像...")
+            preprocess_start = time.time()
             img_np_clean = self._preprocess_image(img_np)
+            print(f"[{time.strftime('%H:%M:%S')}] 图像预处理完成，耗时: {time.time() - preprocess_start:.2f}秒")
     
             # 2. Cellpose 分割
+            print(f"[{time.strftime('%H:%M:%S')}] 开始 Cellpose 细胞分割...")
+            cellpose_start = time.time()
             try:
                 # channels=[0,0] 表示 RGB 灰度图或者让模型自动判断，通常 RGB 用 [0,0] 或 [1,2] 取决于模型
                 # 原代码建议 [0,0]
                 masks, flows, styles = self.cellpose_model.eval(img_np_clean, diameter=18, channels=[0, 0])
+                print(f"[{time.strftime('%H:%M:%S')}] Cellpose 分割完成，耗时: {time.time() - cellpose_start:.2f}秒")
+                print(f"[{time.strftime('%H:%M:%S')}] 检测到细胞数量: {len(np.unique(masks)) - 1}")
             except Exception as e:
-                print(f"Cellpose inference error: {e}")
+                print(f"[{time.strftime('%H:%M:%S')}] Cellpose inference error: {e}")
                 masks = np.zeros_like(img_np_clean[:,:,0], dtype=np.int32)
     
             # 3. 提取细胞特征
+            print(f"[{time.strftime('%H:%M:%S')}] 开始提取细胞特征...")
+            feature_start = time.time()
             cell_features_list, _ = self._extract_cell_features(img_np_clean, masks)
+            print(f"[{time.strftime('%H:%M:%S')}] 细胞特征提取完成，耗时: {time.time() - feature_start:.2f}秒")
 
-        print(cell_features_list[0][:10], len(cell_features_list[0]))
-        print(cell_features_list[1][:10], len(cell_features_list[1]))
+        if len(cell_features_list) > 0:
+            print(cell_features_list[0][:10], len(cell_features_list[0]))
+        if len(cell_features_list) > 1:
+            print(cell_features_list[1][:10], len(cell_features_list[1]))
         
         if len(cell_features_list) == 0:
             print("No cells detected or features extracted.")

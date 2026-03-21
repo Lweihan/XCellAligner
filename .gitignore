@@ -1,0 +1,12 @@
+question
+test_images
+197B.tif
+test_images_wsi
+test_images_weight
+output_patches
+module/vit
+module/checkpoints
+
+output_inference
+
+module/checkpoint/*.pth

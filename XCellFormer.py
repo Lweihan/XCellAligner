@@ -119,7 +119,7 @@ class XCellFormer(nn.Module):
             # ViTModel 前向传播
             with torch.no_grad():
                 outputs = self.vit_huge(**inputs)
-                cls_out = outputs.last_hidden_state 
+                cls_out = outputs.pooler_output if outputs.pooler_output is not None else outputs.last_hidden_state[:, 0]
             
             # cls_out shape: [B, 1280]
         else:
