@@ -22,7 +22,9 @@ class CellInferenceEngine:
                  ctranspath_checkpoint: Optional[str] = None,
                  xcell_checkpoint: Optional[str] = None,
                  xcell_config: dict = None,
-                 device: str = None):
+                 device: str = None,
+                 mode: str = "quality",
+                 detail: bool = False):
         """
         初始化推理引擎。
         
@@ -32,14 +34,23 @@ class CellInferenceEngine:
             xcell_checkpoint: XCellTransformer的权重路径 (.bin 或 .pth)
             xcell_config: XCellTransformer的配置字典
             device: 推理设备 ('cuda' 或 'cpu')
+            mode: 分割模式，'quality' 使用 Cellpose，'efficiency' 使用 InstanSeg
+            detail: 是否打印详细日志，False 不打印，True 打印
         """
         torch.manual_seed(0)
         np.random.seed(0)
         self.device = torch.device(device if device else ('cuda' if torch.cuda.is_available() else 'cpu'))
-        print(f"[InferenceEngine] Initializing on device: {self.device}")
+        self.mode = (mode or "quality").lower()
+        self.detail = bool(detail)
+        if self.mode not in {"quality", "efficiency"}:
+            raise ValueError("mode must be 'quality' or 'efficiency'")
+        self._log(f"[InferenceEngine] Initializing on device: {self.device}")
+        self._log(f"[InferenceEngine] Segmentation mode: {self.mode}")
 
-        # 1. 加载 Cellpose
-        print("[InferenceEngine] Loading Cellpose...")
+        # 1. 按模式加载分割器
+        self.cellpose_model = None
+        self.cellpose_model_type = None
+        self.instanseg_brightfield = None
         try:
             self.cellpose_model = load_cellpose_model(model_type=cellpose_model_path or 'cyto', device=self.device)
             # 存储模型类型用于多GPU处理
@@ -49,9 +60,18 @@ class CellInferenceEngine:
             from cellpose import models
             self.cellpose_model = models.Cellpose(model_type='cyto', gpu=(self.device.type=='cuda'))
             self.cellpose_model_type = 'cyto'
+        if self.mode == "quality":
+            self._log("[InferenceEngine] Loading Cellpose...")
+        else:
+            self._log("[InferenceEngine] Loading InstanSeg (brightfield_nuclei)...")
+            try:
+                from instanseg import InstanSeg
+                self.instanseg_brightfield = InstanSeg("brightfield_nuclei", image_reader="tiffslide", verbosity=1)
+            except Exception as e:
+                raise RuntimeError(f"Failed to load InstanSeg: {e}")
 
         # 2. 加载 CTransPath
-        print("[InferenceEngine] Loading CTransPath...")
+        self._log("[InferenceEngine] Loading CTransPath...")
         try:
             from module.TransPath.ctran import ctranspath
             self.ctranspath_model = ctranspath()
@@ -72,7 +92,7 @@ class CellInferenceEngine:
             raise RuntimeError(f"Failed to load CTransPath: {e}")
 
         # 3. 加载 XCellTransformer (主模型)
-        print("[InferenceEngine] Loading XCellTransformer...")
+        self._log("[InferenceEngine] Loading XCellTransformer...")
         if xcell_config is None:
             # 默认配置，需根据实际训练时的配置调整
             xcell_config = {
@@ -93,7 +113,7 @@ class CellInferenceEngine:
                 self.extract_feature_model.load_state_dict(checkpoint['state_dict'], strict=False)
             else:
                 self.extract_feature_model.load_state_dict(checkpoint, strict=False)
-            print(f"[InferenceEngine] Loaded weights from {xcell_checkpoint}")
+            self._log(f"[InferenceEngine] Loaded weights from {xcell_checkpoint}")
         
         self.extract_feature_model.to(self.device)
         self.extract_feature_model.eval()
@@ -109,8 +129,12 @@ class CellInferenceEngine:
         self.sobel_x = torch.tensor([[1,0,-1],[2,0,-2],[1,0,-1]], dtype=torch.float32, device=self.device).unsqueeze(0).unsqueeze(0)
         self.sobel_y = torch.tensor([[1,2,1],[0,0,0],[-1,-2,-1]], dtype=torch.float32, device=self.device).unsqueeze(0).unsqueeze(0)
 
+    def _log(self, msg: str) -> None:
+        if self.detail:
+            print(msg)
+
     def _preprocess_image(self, img_np: np.ndarray) -> np.ndarray:
-        """清洗图像以确保符合 Cellpose 和 RGB 要求"""
+        """清洗图像以确保符合分割器和 RGB 要求"""
         if img_np.ndim == 2:
             img_np = np.stack([img_np, img_np, img_np], axis=-1)
         elif img_np.ndim == 3:
@@ -128,15 +152,159 @@ class CellInferenceEngine:
                 img_np = img_np.astype(np.uint8)
         return img_np
 
+    def _segment_cells(self, image_source: Union[str, np.ndarray, Image.Image], img_np_clean: np.ndarray) -> np.ndarray:
+        """根据 mode 执行细胞分割并返回掩码。"""
+        import time
+
+        if self.mode == "quality":
+            self._log(f"[{time.strftime('%H:%M:%S')}] 开始 Cellpose 细胞分割...")
+            seg_start = time.time()
+            try:
+                masks, flows, styles = self.cellpose_model.eval(img_np_clean, diameter=18, channels=[0, 0])
+                self._log(f"[{time.strftime('%H:%M:%S')}] Cellpose 分割完成，耗时: {time.time() - seg_start:.2f}秒")
+                self._log(f"[{time.strftime('%H:%M:%S')}] 检测到细胞数量: {len(np.unique(masks)) - 1}")
+                return masks
+            except Exception as e:
+                self._log(f"[{time.strftime('%H:%M:%S')}] Cellpose inference error: {e}")
+                return np.zeros_like(img_np_clean[:, :, 0], dtype=np.int32)
+
+        self._log(f"[{time.strftime('%H:%M:%S')}] 开始 InstanSeg 细胞分割...")
+        seg_start = time.time()
+        try:
+            pixel_size = None
+            image_array = img_np_clean
+            if isinstance(image_source, str):
+                image_array, pixel_size = self.instanseg_brightfield.read_image(image_source)
+            labeled_output, image_tensor = self.instanseg_brightfield.eval_small_image(image_array, pixel_size)
+
+            # InstanSeg may return torch.Tensor; normalize to a 2D numpy label map.
+            if isinstance(labeled_output, torch.Tensor):
+                labeled_output_np = labeled_output.detach().cpu().numpy()
+            else:
+                labeled_output_np = np.asarray(labeled_output)
+
+            labeled_output_np = np.squeeze(labeled_output_np)
+            if labeled_output_np.ndim > 2:
+                # Fallback for unexpected output shapes.
+                labeled_output_np = labeled_output_np[..., 0]
+
+            masks = labeled_output_np.astype(np.int32, copy=False)
+            self._log(f"[{time.strftime('%H:%M:%S')}] InstanSeg 分割完成，耗时: {time.time() - seg_start:.2f}秒")
+            self._log(f"[{time.strftime('%H:%M:%S')}] 检测到细胞数量: {int(masks.max())}")
+            return masks
+        except Exception as e:
+            self._log(f"[{time.strftime('%H:%M:%S')}] InstanSeg inference error: {e}")
+            return np.zeros_like(img_np_clean[:, :, 0], dtype=np.int32)
+
     def _extract_cell_features(self, img_np: np.ndarray, masks: np.ndarray) -> Tuple[List[np.ndarray], np.ndarray]:
         """
         针对每个细胞提取 CTransPath 特征。
         返回: (cell_features_list, masks_array)
         """
         import time
+
+        # quality 模式保持原始串行逻辑不变
+        if self.mode == "quality":
+            cell_features = []
+            # Create a new mask to guarantee contiguous labels matching the feature list
+            new_masks = np.zeros_like(masks, dtype=np.int32)
+            valid_label_idx = 1
+            
+            masks_tensor = torch.from_numpy(masks).to(self.device).to(torch.int32)
+            unique_labels = torch.unique(masks_tensor)
+            unique_labels = unique_labels[unique_labels != 0]
+
+            if len(unique_labels) == 0:
+                self._log(f"[{time.strftime('%H:%M:%S')}] 未检测到细胞")
+                return [], new_masks
+
+            self._log(f"[{time.strftime('%H:%M:%S')}] 开始处理 {len(unique_labels)} 个细胞的特征提取")
+            
+            # 计算全局最大面积用于归一化
+            max_area = (masks_tensor > 0).sum().float()
+            if max_area == 0: max_area = torch.tensor(1.0, device=self.device)
+
+            for idx, label in enumerate(unique_labels):
+                if idx % 100 == 0:  # 每100个细胞输出一次进度
+                    self._log(f"[{time.strftime('%H:%M:%S')}] 处理细胞进度: {idx}/{len(unique_labels)}")
+                cell_mask = (masks_tensor == label).float()
+                cell_area = cell_mask.sum()
+                
+                # 计算周长 (Sobel)
+                cell_mask_unsq = cell_mask.unsqueeze(0).unsqueeze(0)
+                grad_x = F.conv2d(cell_mask_unsq, self.sobel_x, padding=1)
+                grad_y = F.conv2d(cell_mask_unsq, self.sobel_y, padding=1)
+                cell_perimeter = torch.sqrt(grad_x**2 + grad_y**2).sum()
+                
+                roundness = 4 * np.pi * (cell_area / (cell_perimeter**2 + 1e-6))
+                normalized_area = cell_area * 1e4 / (max_area + 1e-6)
+                normalized_perimeter = cell_perimeter * 1e4 / (max_area + 1e-6)
+                normalized_roundness = roundness * 1e4
+
+                # 提取细胞 ROI
+                # 注意：原代码逻辑是 mask * img，这会导致背景变黑。
+                cell_region_np = (img_np * cell_mask.cpu().numpy().astype(np.uint8)[:, :, None]).astype(np.uint8)
+                
+                if cell_region_np.sum() == 0:
+                    continue
+                
+                cell_img_pil = Image.fromarray(cell_region_np)
+                
+                try:
+                    input_tensor = self.preprocess(cell_img_pil).unsqueeze(0).to(self.device)
+                    with torch.no_grad():
+                        output = self.ctranspath_model(input_tensor)
+                    
+                    if output.dim() == 4 and output.shape[-1] == 768:
+                        output_permuted = output.permute(0, 3, 1, 2) # [1, 768, 7, 7]
+                        feat_pooled = F.adaptive_avg_pool2d(output_permuted, (1, 1)) #[1, 768, 1, 1]
+                        cell_img_feat = feat_pooled.squeeze(-1).squeeze(-1).squeeze(0) # [768] (保持为 Tensor 方便计算)
+                        
+                        # ==========================================
+                        # 新增：形态学特征调制 (Morphology Modulation)
+                        # ==========================================
+                        
+                        # 1. 获取形态学标量值 (.item() 转为 python float)
+                        m_area = normalized_area.item()
+                        m_peri = normalized_perimeter.item()
+                        m_round = normalized_roundness.item()
+                        
+                        # 2. 构建形态学特征向量 [Area, Perimeter, Roundness]
+                        morphology_vector = np.array([m_area, m_peri, m_round])
+                        
+                        # 3. 生成扩展向量 (Tile & Slice)
+                        # 逻辑：将长度为 3 的向量重复，直到长度 >= 768，然后截取前 768 位
+                        feat_dim = cell_img_feat.shape[0] # 通常是 768
+                        repeat_times = int(np.ceil(feat_dim / 3.0))
+                        
+                        expanded_morphology = np.tile(morphology_vector, repeat_times)[:feat_dim]
+                        
+                        # 4. 执行逐元素相乘 (调制)
+                        # 将 numpy 转为 tensor 并与 gpu 上的特征相乘
+                        modulation_tensor = torch.from_numpy(expanded_morphology).float().to(self.device)
+                        
+                        # 【关键操作】：视觉特征 * 形态学因子
+                        modulated_feat = cell_img_feat * modulation_tensor
+                        
+                        # 5. 转回 numpy 并保存
+                        final_feat = modulated_feat.cpu().numpy()
+                        
+                        cell_features.append(final_feat)
+                        # 将该细胞在新 mask 中设为递增且连续的 ID，保证与 feature index 一一对应!
+                        new_masks[masks == label.item()] = valid_label_idx
+                        valid_label_idx += 1
+                        
+                    else:
+                        # 如果输出维度不对，跳过
+                        continue
+                except Exception as e:
+                    self._log(f"Warning: Feature extraction failed for cell {label}: {e}")
+                    continue
+
+            return cell_features, new_masks
         
+        # efficiency 模式：批量并行前向，利用 GPU 加速特征提取
         cell_features = []
-        # Create a new mask to guarantee contiguous labels matching the feature list
         new_masks = np.zeros_like(masks, dtype=np.int32)
         valid_label_idx = 1
         
@@ -145,91 +313,84 @@ class CellInferenceEngine:
         unique_labels = unique_labels[unique_labels != 0]
 
         if len(unique_labels) == 0:
-            print(f"[{time.strftime('%H:%M:%S')}] 未检测到细胞")
+            self._log(f"[{time.strftime('%H:%M:%S')}] 未检测到细胞")
             return [], new_masks
 
-        print(f"[{time.strftime('%H:%M:%S')}] 开始处理 {len(unique_labels)} 个细胞的特征提取")
+        self._log(f"[{time.strftime('%H:%M:%S')}] 开始处理 {len(unique_labels)} 个细胞的特征提取")
         
         # 计算全局最大面积用于归一化
         max_area = (masks_tensor > 0).sum().float()
         if max_area == 0: max_area = torch.tensor(1.0, device=self.device)
 
+        roi_tensors = []
+        morphology_rows = []
+        label_values = []
+
         for idx, label in enumerate(unique_labels):
-            if idx % 100 == 0:  # 每100个细胞输出一次进度
-                print(f"[{time.strftime('%H:%M:%S')}] 处理细胞进度: {idx}/{len(unique_labels)}")
+            if idx % 100 == 0:
+                self._log(f"[{time.strftime('%H:%M:%S')}] 处理细胞进度: {idx}/{len(unique_labels)}")
             cell_mask = (masks_tensor == label).float()
             cell_area = cell_mask.sum()
             
-            # 计算周长 (Sobel)
             cell_mask_unsq = cell_mask.unsqueeze(0).unsqueeze(0)
             grad_x = F.conv2d(cell_mask_unsq, self.sobel_x, padding=1)
             grad_y = F.conv2d(cell_mask_unsq, self.sobel_y, padding=1)
             cell_perimeter = torch.sqrt(grad_x**2 + grad_y**2).sum()
-            
+
             roundness = 4 * np.pi * (cell_area / (cell_perimeter**2 + 1e-6))
             normalized_area = cell_area * 1e4 / (max_area + 1e-6)
             normalized_perimeter = cell_perimeter * 1e4 / (max_area + 1e-6)
             normalized_roundness = roundness * 1e4
 
-            # 提取细胞 ROI
-            # 注意：原代码逻辑是 mask * img，这会导致背景变黑。
             cell_region_np = (img_np * cell_mask.cpu().numpy().astype(np.uint8)[:, :, None]).astype(np.uint8)
-            
             if cell_region_np.sum() == 0:
                 continue
-            
-            cell_img_pil = Image.fromarray(cell_region_np)
-            
+
             try:
-                input_tensor = self.preprocess(cell_img_pil).unsqueeze(0).to(self.device)
-                with torch.no_grad():
-                    output = self.ctranspath_model(input_tensor)
-                
-                if output.dim() == 4 and output.shape[-1] == 768:
-                    output_permuted = output.permute(0, 3, 1, 2) # [1, 768, 7, 7]
-                    feat_pooled = F.adaptive_avg_pool2d(output_permuted, (1, 1)) #[1, 768, 1, 1]
-                    cell_img_feat = feat_pooled.squeeze(-1).squeeze(-1).squeeze(0) # [768] (保持为 Tensor 方便计算)
-                    
-                    # ==========================================
-                    # 新增：形态学特征调制 (Morphology Modulation)
-                    # ==========================================
-                    
-                    # 1. 获取形态学标量值 (.item() 转为 python float)
-                    m_area = normalized_area.item()
-                    m_peri = normalized_perimeter.item()
-                    m_round = normalized_roundness.item()
-                    
-                    # 2. 构建形态学特征向量 [Area, Perimeter, Roundness]
-                    morphology_vector = np.array([m_area, m_peri, m_round])
-                    
-                    # 3. 生成扩展向量 (Tile & Slice)
-                    # 逻辑：将长度为 3 的向量重复，直到长度 >= 768，然后截取前 768 位
-                    feat_dim = cell_img_feat.shape[0] # 通常是 768
-                    repeat_times = int(np.ceil(feat_dim / 3.0))
-                    
-                    expanded_morphology = np.tile(morphology_vector, repeat_times)[:feat_dim]
-                    
-                    # 4. 执行逐元素相乘 (调制)
-                    # 将 numpy 转为 tensor 并与 gpu 上的特征相乘
-                    modulation_tensor = torch.from_numpy(expanded_morphology).float().to(self.device)
-                    
-                    # 【关键操作】：视觉特征 * 形态学因子
-                    modulated_feat = cell_img_feat * modulation_tensor
-                    
-                    # 5. 转回 numpy 并保存
-                    final_feat = modulated_feat.cpu().numpy()
-                    
-                    cell_features.append(final_feat)
-                    # 将该细胞在新 mask 中设为递增且连续的 ID，保证与 feature index 一一对应!
-                    new_masks[masks == label.item()] = valid_label_idx
-                    valid_label_idx += 1
-                    
-                else:
-                    # 如果输出维度不对，跳过
-                    continue
+                cell_img_pil = Image.fromarray(cell_region_np)
+                roi_tensors.append(self.preprocess(cell_img_pil))
+                morphology_rows.append([
+                    normalized_area.item(),
+                    normalized_perimeter.item(),
+                    normalized_roundness.item()
+                ])
+                label_values.append(int(label.item()))
             except Exception as e:
-                print(f"Warning: Feature extraction failed for cell {label}: {e}")
+                self._log(f"Warning: ROI preprocess failed for cell {label}: {e}")
                 continue
+
+        if len(roi_tensors) == 0:
+            return [], new_masks
+
+        batch_size = 64
+        for start in range(0, len(roi_tensors), batch_size):
+            end = min(start + batch_size, len(roi_tensors))
+            batch_tensor = torch.stack(roi_tensors[start:end], dim=0).to(self.device)
+
+            with torch.no_grad():
+                output = self.ctranspath_model(batch_tensor)
+
+            if output.dim() == 4 and output.shape[-1] == 768:
+                output = output.permute(0, 3, 1, 2)
+            elif not (output.dim() == 4 and output.shape[1] == 768):
+                continue
+
+            feat_pooled = F.adaptive_avg_pool2d(output, (1, 1)).squeeze(-1).squeeze(-1)
+            feat_dim = feat_pooled.shape[1]
+
+            morphology_batch = np.asarray(morphology_rows[start:end], dtype=np.float32)
+            repeat_times = int(np.ceil(feat_dim / 3.0))
+            expanded_morphology = np.tile(morphology_batch, (1, repeat_times))[:, :feat_dim]
+            modulation_tensor = torch.from_numpy(expanded_morphology).to(self.device)
+
+            modulated_feat = feat_pooled * modulation_tensor
+            batch_features = modulated_feat.cpu().numpy()
+
+            batch_labels = label_values[start:end]
+            for local_idx, lbl in enumerate(batch_labels):
+                cell_features.append(batch_features[local_idx])
+                new_masks[masks == lbl] = valid_label_idx
+                valid_label_idx += 1
 
         return cell_features, new_masks
 
@@ -274,18 +435,19 @@ class CellInferenceEngine:
                 'masks': 分割掩码 (numpy array)
             }
         """
+        masks = None
         if cell_features_list is None:
             import time
             
             # 1. 加载并清洗图像
-            print(f"[{time.strftime('%H:%M:%S')}] 开始加载图像...")
+            self._log(f"[{time.strftime('%H:%M:%S')}] 开始加载图像...")
             start_time = time.time()
             
             if isinstance(image_source, str):
-                print(f"[{time.strftime('%H:%M:%S')}] 从文件加载图像: {image_source}")
+                self._log(f"[{time.strftime('%H:%M:%S')}] 从文件加载图像: {image_source}")
                 img_np = io.imread(image_source)
                 img_pil = Image.open(image_source).convert("RGB")
-                print(f"[{time.strftime('%H:%M:%S')}] 图像尺寸: {img_np.shape}")
+                self._log(f"[{time.strftime('%H:%M:%S')}] 图像尺寸: {img_np.shape}")
             elif isinstance(image_source, np.ndarray):
                 img_np = image_source
                 img_pil = Image.fromarray(img_np).convert("RGB") if img_np.ndim == 3 else Image.fromarray(img_np).convert("L").convert("RGB")
@@ -295,39 +457,29 @@ class CellInferenceEngine:
             else:
                 raise ValueError("Unsupported image source type")
     
-            print(f"[{time.strftime('%H:%M:%S')}] 图像加载完成，耗时: {time.time() - start_time:.2f}秒")
+            self._log(f"[{time.strftime('%H:%M:%S')}] 图像加载完成，耗时: {time.time() - start_time:.2f}秒")
             
-            print(f"[{time.strftime('%H:%M:%S')}] 开始预处理图像...")
+            self._log(f"[{time.strftime('%H:%M:%S')}] 开始预处理图像...")
             preprocess_start = time.time()
             img_np_clean = self._preprocess_image(img_np)
-            print(f"[{time.strftime('%H:%M:%S')}] 图像预处理完成，耗时: {time.time() - preprocess_start:.2f}秒")
+            self._log(f"[{time.strftime('%H:%M:%S')}] 图像预处理完成，耗时: {time.time() - preprocess_start:.2f}秒")
     
-            # 2. Cellpose 分割
-            print(f"[{time.strftime('%H:%M:%S')}] 开始 Cellpose 细胞分割...")
-            cellpose_start = time.time()
-            try:
-                # channels=[0,0] 表示 RGB 灰度图或者让模型自动判断，通常 RGB 用 [0,0] 或 [1,2] 取决于模型
-                # 原代码建议 [0,0]
-                masks, flows, styles = self.cellpose_model.eval(img_np_clean, diameter=18, channels=[0, 0])
-                print(f"[{time.strftime('%H:%M:%S')}] Cellpose 分割完成，耗时: {time.time() - cellpose_start:.2f}秒")
-                print(f"[{time.strftime('%H:%M:%S')}] 检测到细胞数量: {len(np.unique(masks)) - 1}")
-            except Exception as e:
-                print(f"[{time.strftime('%H:%M:%S')}] Cellpose inference error: {e}")
-                masks = np.zeros_like(img_np_clean[:,:,0], dtype=np.int32)
+            # 2. 分割 (quality: Cellpose, efficiency: InstanSeg)
+            masks = self._segment_cells(image_source, img_np_clean)
     
             # 3. 提取细胞特征
-            print(f"[{time.strftime('%H:%M:%S')}] 开始提取细胞特征...")
+            self._log(f"[{time.strftime('%H:%M:%S')}] 开始提取细胞特征...")
             feature_start = time.time()
             cell_features_list, _ = self._extract_cell_features(img_np_clean, masks)
-            print(f"[{time.strftime('%H:%M:%S')}] 细胞特征提取完成，耗时: {time.time() - feature_start:.2f}秒")
+            self._log(f"[{time.strftime('%H:%M:%S')}] 细胞特征提取完成，耗时: {time.time() - feature_start:.2f}秒")
 
         if len(cell_features_list) > 0:
-            print(cell_features_list[0][:10], len(cell_features_list[0]))
+            self._log(f"{cell_features_list[0][:10]} {len(cell_features_list[0])}")
         if len(cell_features_list) > 1:
-            print(cell_features_list[1][:10], len(cell_features_list[1]))
+            self._log(f"{cell_features_list[1][:10]} {len(cell_features_list[1])}")
         
         if len(cell_features_list) == 0:
-            print("No cells detected or features extracted.")
+            self._log("No cells detected or features extracted.")
             # 返回空结果或默认值
             return {
                 'cls_output': None,
@@ -373,9 +525,10 @@ class CellInferenceEngine:
             }
 
         except Exception as e:
-            print(f"Model inference error: {e}")
+            self._log(f"Model inference error: {e}")
             import traceback
-            traceback.print_exc()
+            if self.detail:
+                traceback.print_exc()
             return {
                 'cls_output': None,
                 'cell_logits': None,

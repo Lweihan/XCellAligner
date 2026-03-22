@@ -136,6 +136,8 @@ dependencies:
       - batchgenerators==0.25.1
       - batchgeneratorsv2==0.3.0
       - blosc2==3.11.1
+      - bioio
+      - bioio-tifffile
       - cellpose==4.0.7
       - certifi==2025.11.12
       - cffi==2.0.0
@@ -168,6 +170,7 @@ dependencies:
       - imagecodecs==2025.3.30
       - imageio==2.37.2
       - importlib-resources==6.5.2
+      - instanseg-torch
       - ipykernel==7.1.0
       - ipython==8.37.0
       - jedi==0.19.2
@@ -244,6 +247,7 @@ dependencies:
       - segment-anything==1.0
       - shellingham==1.5.4
       - simpleitk==2.5.3
+      - slideio
       - six==1.17.0
       - sniffio==1.3.1
       - spams-bin==2.6.13
@@ -253,6 +257,7 @@ dependencies:
       - tensorboard-data-server==0.7.2
       - threadpoolctl==3.6.0
       - tifffile==2025.5.10
+      - tiffslide
       - timm==0.9.8
       - tokenizers==0.13.3
       - torch==2.9.1
