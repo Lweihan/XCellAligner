@@ -243,7 +243,7 @@ def main(args):
             start_index = args.start_index
             mif_channel = args.mif_channel
 
-            _, he_embed, cell_logits = he_model(he_features, he_mask)
+            _, _, cell_logits, _ = he_model(raw_images=None, x=he_features, mask=he_mask)
 
             # 处理 he_valid
             he_valid_list = []
@@ -329,7 +329,7 @@ def main(args):
                 mif_neg_features = [neg.to(device) for neg in batch["mif_neg_features"]]
                 mif_neg_mask = [neg.to(device) for neg in batch["mif_neg_mask"]]
 
-                _, he_embed, cell_logits = he_model(he_features, he_mask)
+                _, _, cell_logits, _ = he_model(raw_images=None, x=he_features, mask=he_mask)
 
                 # Process he_valid
                 he_valid_list = []

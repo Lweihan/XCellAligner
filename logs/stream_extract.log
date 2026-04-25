@@ -1,0 +1,1607 @@
+2026-04-25 03:24:37,625 - INFO - Loading models...
+2026-04-25 03:24:42,408 - INFO - CTransPath weights adapted. Unexpected keys (likely position buffers): 19
+2026-04-25 03:24:45,695 - INFO - Opening WSIs...
+2026-04-25 03:24:45,941 - INFO - Total potential patches: 17136. Starting extraction...
+2026-04-25 03:24:49,401 - ERROR - Error at x=4096, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:24:50,013 - ERROR - Error at x=4608, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:24:50,620 - ERROR - Error at x=5120, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:24:51,992 - ERROR - Error at x=10752, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:24:52,709 - ERROR - Error at x=11264, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:24:53,392 - ERROR - Error at x=11776, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:24:54,130 - ERROR - Error at x=12288, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:24:54,825 - ERROR - Error at x=12800, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:24:55,437 - ERROR - Error at x=13312, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:24:56,126 - ERROR - Error at x=20480, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:24:56,743 - ERROR - Error at x=20992, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:24:57,353 - ERROR - Error at x=21504, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:24:57,979 - ERROR - Error at x=22016, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:24:58,596 - ERROR - Error at x=22528, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:24:59,227 - ERROR - Error at x=23552, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:24:59,861 - ERROR - Error at x=24064, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:00,487 - ERROR - Error at x=24576, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:01,145 - ERROR - Error at x=25088, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:01,772 - ERROR - Error at x=26624, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:02,446 - ERROR - Error at x=30720, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:03,097 - ERROR - Error at x=35328, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:03,768 - ERROR - Error at x=37888, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:04,421 - ERROR - Error at x=38400, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:05,044 - ERROR - Error at x=38912, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:05,671 - ERROR - Error at x=39424, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:06,492 - ERROR - Error at x=60416, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:07,138 - ERROR - Error at x=60928, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:08,562 - ERROR - Error at x=2560, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:09,187 - ERROR - Error at x=4096, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:10,541 - ERROR - Error at x=11264, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:11,285 - ERROR - Error at x=11776, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:11,958 - ERROR - Error at x=12288, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:12,691 - ERROR - Error at x=12800, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:13,413 - ERROR - Error at x=13312, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:14,114 - ERROR - Error at x=13824, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:14,879 - ERROR - Error at x=20992, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:15,577 - ERROR - Error at x=22528, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:16,259 - ERROR - Error at x=23040, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:16,921 - ERROR - Error at x=23552, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:17,574 - ERROR - Error at x=24576, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:18,207 - ERROR - Error at x=25088, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:18,950 - ERROR - Error at x=35840, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:19,698 - ERROR - Error at x=37888, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:20,453 - ERROR - Error at x=38400, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:21,159 - ERROR - Error at x=38912, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:21,823 - ERROR - Error at x=39424, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:22,788 - ERROR - Error at x=59904, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:23,416 - ERROR - Error at x=60416, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:24,191 - ERROR - Error at x=2048, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:24,835 - ERROR - Error at x=4608, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:26,077 - ERROR - Error at x=6144, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:26,777 - ERROR - Error at x=11776, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:27,533 - ERROR - Error at x=12288, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:28,253 - ERROR - Error at x=12800, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:29,056 - ERROR - Error at x=13312, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:29,855 - ERROR - Error at x=13824, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:30,587 - ERROR - Error at x=14336, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:31,331 - ERROR - Error at x=14848, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:32,084 - ERROR - Error at x=15872, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:32,783 - ERROR - Error at x=16384, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:33,473 - ERROR - Error at x=20992, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:34,844 - ERROR - Error at x=23552, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:35,529 - ERROR - Error at x=24064, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:36,171 - ERROR - Error at x=24576, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:36,801 - ERROR - Error at x=25088, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:37,401 - ERROR - Error at x=25600, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:38,012 - ERROR - Error at x=26112, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:38,640 - ERROR - Error at x=26624, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:39,266 - ERROR - Error at x=27136, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:39,892 - ERROR - Error at x=28160, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:40,526 - ERROR - Error at x=28672, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:41,192 - ERROR - Error at x=32768, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:41,899 - ERROR - Error at x=37888, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:42,687 - ERROR - Error at x=38912, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:43,409 - ERROR - Error at x=39424, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:44,070 - ERROR - Error at x=39936, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:44,866 - ERROR - Error at x=49152, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:45,530 - ERROR - Error at x=49664, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:46,186 - ERROR - Error at x=50176, y=1024: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:47,950 - ERROR - Error at x=5120, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:49,271 - ERROR - Error at x=11264, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:49,988 - ERROR - Error at x=12800, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:50,755 - ERROR - Error at x=13312, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:51,501 - ERROR - Error at x=13824, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:52,235 - ERROR - Error at x=14336, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:53,036 - ERROR - Error at x=14848, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:53,847 - ERROR - Error at x=15360, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:54,494 - ERROR - Error at x=15872, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:55,222 - ERROR - Error at x=21504, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:55,873 - ERROR - Error at x=22016, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:56,554 - ERROR - Error at x=23552, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:57,252 - ERROR - Error at x=24064, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:57,924 - ERROR - Error at x=24576, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:58,632 - ERROR - Error at x=26624, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:59,282 - ERROR - Error at x=27136, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:25:59,915 - ERROR - Error at x=27648, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:26:00,581 - ERROR - Error at x=28160, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:26:01,277 - ERROR - Error at x=32256, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:26:02,017 - ERROR - Error at x=36864, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:26:02,729 - ERROR - Error at x=37376, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:26:03,509 - ERROR - Error at x=37888, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:26:04,186 - ERROR - Error at x=38400, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:26:04,895 - ERROR - Error at x=38912, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:26:05,529 - ERROR - Error at x=39936, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:26:06,245 - ERROR - Error at x=48128, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:26:06,863 - ERROR - Error at x=48640, y=1536: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:26:07,837 - ERROR - Error at x=5632, y=2048: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:26:08,562 - ERROR - Error at x=13824, y=2048: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:33,764 - INFO - Loading models...
+2026-04-25 03:29:39,067 - INFO - CTransPath weights adapted. Unexpected keys (likely position buffers): 19
+2026-04-25 03:29:42,043 - INFO - Opening WSIs...
+2026-04-25 03:29:42,266 - INFO - Total potential patches: 17136. Starting extraction...
+2026-04-25 03:29:45,634 - ERROR - Error at x=4096, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:45,637 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:29:46,248 - ERROR - Error at x=4608, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:46,249 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:29:46,851 - ERROR - Error at x=5120, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:46,852 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:29:48,183 - ERROR - Error at x=10752, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:48,184 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:29:48,905 - ERROR - Error at x=11264, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:48,906 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:29:49,530 - ERROR - Error at x=11776, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:49,531 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:29:50,277 - ERROR - Error at x=12288, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:50,278 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:29:50,949 - ERROR - Error at x=12800, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:50,950 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:29:51,558 - ERROR - Error at x=13312, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:51,558 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:29:52,248 - ERROR - Error at x=20480, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:52,249 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:29:52,877 - ERROR - Error at x=20992, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:52,878 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:29:53,522 - ERROR - Error at x=21504, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:53,522 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:29:54,161 - ERROR - Error at x=22016, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:54,161 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:29:54,775 - ERROR - Error at x=22528, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:54,775 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:29:55,396 - ERROR - Error at x=23552, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:55,396 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:29:56,007 - ERROR - Error at x=24064, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:56,008 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:29:56,635 - ERROR - Error at x=24576, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:56,636 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:29:57,246 - ERROR - Error at x=25088, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:57,247 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:29:57,877 - ERROR - Error at x=26624, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:57,877 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:29:58,552 - ERROR - Error at x=30720, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:58,552 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:29:59,216 - ERROR - Error at x=35328, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:59,217 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:29:59,833 - ERROR - Error at x=37888, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:29:59,833 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:30:00,382 - ERROR - Error at x=38400, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:30:00,383 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:30:00,909 - ERROR - Error at x=38912, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:30:00,910 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:30:01,440 - ERROR - Error at x=39424, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:30:01,440 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:30:02,122 - ERROR - Error at x=60416, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:30:02,122 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:30:02,662 - ERROR - Error at x=60928, y=0: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:30:02,662 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:30:03,820 - ERROR - Error at x=2560, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:30:03,820 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:30:04,372 - ERROR - Error at x=4096, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:30:04,373 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:30:05,451 - ERROR - Error at x=11264, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:30:05,451 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:30:06,049 - ERROR - Error at x=11776, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:30:06,050 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:30:06,591 - ERROR - Error at x=12288, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:30:06,591 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:30:07,200 - ERROR - Error at x=12800, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:30:07,201 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:30:07,782 - ERROR - Error at x=13312, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:30:07,783 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:30:08,303 - ERROR - Error at x=13824, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:30:08,304 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:30:08,903 - ERROR - Error at x=20992, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:30:08,903 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:30:09,451 - ERROR - Error at x=22528, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:30:09,451 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:30:10,054 - ERROR - Error at x=23040, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:30:10,054 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:30:10,678 - ERROR - Error at x=23552, y=512: not enough values to unpack (expected 4, got 3)
+2026-04-25 03:30:10,679 - ERROR - Traceback (most recent call last):
+  File "/home/zyh/NewMedLabel/XCellAligner/extract_features_wsi_stream.py", line 204, in main
+    output = ctp_model(input_tensor.to(device))
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 617, in forward
+    x = self.forward_features(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 609, in forward_features
+    x = self.layers(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 443, in forward
+    x = self.blocks(x)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/zyh/miniconda3/envs/aligner/lib/python3.10/site-packages/timm/models/swin_transformer.py", line 322, in forward
+    B, H, W, C = x.shape
+ValueError: not enough values to unpack (expected 4, got 3)
+
+2026-04-25 03:31:00,027 - INFO - Loading models...
+2026-04-25 03:31:04,938 - INFO - CTransPath weights adapted. Unexpected keys (likely position buffers): 19
+2026-04-25 03:31:08,231 - INFO - Opening WSIs...
+2026-04-25 03:31:08,461 - INFO - Total potential patches: 17136. Starting extraction...
+2026-04-25 03:36:39,607 - INFO - Loading models...
+2026-04-25 03:36:44,427 - INFO - CTransPath weights adapted. Unexpected keys (likely position buffers): 19
+2026-04-25 03:36:47,903 - INFO - Opening WSIs...
+2026-04-25 03:36:48,200 - INFO - Total potential patches: 17136. Starting extraction...
+2026-04-25 14:24:26,963 - INFO - All done! Features saved to /home/zyh/NewMedLabel/XCellAligner/CRC01_features_stream

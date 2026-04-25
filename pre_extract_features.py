@@ -206,8 +206,24 @@ def extract_he_feature(he_path, cache_dir, device, cellpose_model, ctp_model, lo
             img_for_cellpose = img_np
             masks, _, _ = cellpose_model.eval(img_for_cellpose, diameter=18, channels=[0, 0])
 
-        # 4. 后续处理 (将 masks 转为 Tensor 并提取特征)
+        # 4. 后续处理 (边缘过滤，然后将 masks 转为 Tensor 并提取特征)
         # 注意：此时 masks 变量保证是 numpy 数组
+        margin = 20
+        h, w = img_np.shape[:2]
+        filtered_masks = np.zeros_like(masks)
+        for label in np.unique(masks):
+            if label == 0:
+                continue
+            coords = np.where(masks == label)
+            if len(coords[0]) == 0:
+                continue
+            center_y = int(np.mean(coords[0]))
+            center_x = int(np.mean(coords[1]))
+            # 如果细胞中心距离边界小于 margin，则保留，否则丢弃
+            if margin <= center_x < w - margin and margin <= center_y < h - margin:
+                filtered_masks[masks == label] = label
+        
+        masks = filtered_masks  # 更新为过滤后的掩码，确保后续 mIF 也使用相同的 mask
         masks_tensor = torch.from_numpy(masks).to(device).to(torch.int32)
         
         ctp_model.eval()
@@ -350,6 +366,18 @@ def gpu_worker(
 
     cellpose_model = load_cellpose_model(device=device)
     ctp_model = ctranspath().to(device)
+    
+    # 强制加载预训练权重
+    checkpoint_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'module', 'checkpoint', 'ctranspath.pth')
+    if not os.path.exists(checkpoint_path):
+        raise FileNotFoundError(f"CTransPath weights not found at {checkpoint_path}. You must provide correct weights!")
+    logger.info(f"Loading CTransPath weights from {checkpoint_path}")
+    checkpoint = torch.load(checkpoint_path, map_location=device)
+    if 'state_dict' in checkpoint:
+        ctp_model.load_state_dict(checkpoint['state_dict'], strict=False)
+    else:
+        ctp_model.load_state_dict(checkpoint, strict=False)
+
     if hasattr(ctp_model, 'head'):
         ctp_model.head = torch.nn.Identity()
     ctp_model.eval()

@@ -42,7 +42,8 @@ class CellDensityExtractor:
         """
         # Run Cellpose segmentation
         if cell_masks is None:
-            masks, flows, styles = self.cellpose_model.eval(image, diameter=None, channels=[0, 0])
+            cp_results = self.cellpose_model.eval(image, diameter=None, channels=[0, 0])
+            masks = cp_results[0]
         else:
             masks = cell_masks
         
@@ -99,9 +100,9 @@ class CellDensityExtractor:
         
         if total_sum == 0:
             return 0.0
-        result = (weighted_sum / total_sum) * 20
+        result = weighted_sum / total_sum
         
-        return min(result, 1.0)
+        return result
         
     def process_image_pair(self, images, flags, cell_masks=None):
         """

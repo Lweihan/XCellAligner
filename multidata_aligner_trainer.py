@@ -4,6 +4,7 @@ import argparse
 import pickle
 import random
 import logging
+import json
 from tqdm import tqdm
 from datetime import datetime
 
@@ -70,6 +71,7 @@ def contrastive_loss(anchor, positive, negatives, temperature=0.07):
 class HeMifDataset(Dataset):
     def __init__(
         self,
+        cache_dir,
         he_dir,
         mif_dir,
         task_id,
@@ -100,6 +102,14 @@ class HeMifDataset(Dataset):
 
         self.all_coords = list(self.mif_map.keys())
         assert len(self.valid_pairs) > 0
+        
+        # 加载全局归一化参数
+        stats_file = os.path.join(cache_dir, "global_norm_stats.json")
+        if not os.path.exists(stats_file):
+            raise FileNotFoundError(f"Missing {stats_file}. Please run compute_global_norm_stats.py first.")
+        with open(stats_file, 'r') as f:
+            stats = json.load(f)
+            self.global_p99 = torch.tensor(stats['p99_max'], dtype=torch.float32)
 
     def __len__(self):
         return len(self.valid_pairs)
@@ -118,13 +128,23 @@ class HeMifDataset(Dataset):
 
         neg_coords = self._get_farthest_negative_samples(x, y)
         mif_neg = [load_pkl(self.mif_map[c]) for c in neg_coords]
+        
+        # 应用全局归一化
+        mif_pos_features = mif_pos["features"][0] / self.global_p99
+        mif_pos_features = torch.clamp(mif_pos_features, 0.0, 1.0)
+        
+        mif_neg_features = []
+        for n in mif_neg:
+            norm_neg = n["features"][0] / self.global_p99
+            norm_neg = torch.clamp(norm_neg, 0.0, 1.0)
+            mif_neg_features.append(norm_neg)
 
         return {
             "he_features": he["features"][0],
             "he_mask": he["mask"][0],
-            "mif_pos_features": mif_pos["features"][0],
+            "mif_pos_features": mif_pos_features,
             "mif_pos_mask": mif_pos["mask"][0],
-            "mif_neg_features": [n["features"][0] for n in mif_neg],
+            "mif_neg_features": mif_neg_features,
             "mif_neg_mask": [n["mask"][0] for n in mif_neg],
             # ⭐ task meta
             "task_id": self.task_id,
@@ -157,6 +177,7 @@ def main(args):
 
     for t in range(num_tasks):
         dataset = HeMifDataset(
+            cache_dir=args.cache_dir[t],
             he_dir=os.path.join(args.cache_dir[t], "he"),
             mif_dir=os.path.join(args.cache_dir[t], "mif"),
             task_id=t,

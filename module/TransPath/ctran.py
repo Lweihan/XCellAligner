@@ -38,9 +38,11 @@ class ConvStem(nn.Module):
         B, C, H, W = x.shape
         assert H == self.img_size[0] and W == self.img_size[1], \
             f"Input image size ({H}*{W}) doesn't match model ({self.img_size[0]}*{self.img_size[1]})."
-        x = self.proj(x)
-        if self.flatten:
-            x = x.flatten(2).transpose(1, 2)  # BCHW -> BNC
+        x = self.proj(x) # [B, embed_dim, H/4, W/4]
+        
+        # 为了适配 timm 0.9.x 的 SwinTransformer，我们需要输出 [B, H, W, C] 格式
+        x = x.permute(0, 2, 3, 1) # [B, H/4, W/4, embed_dim]
+        
         x = self.norm(x)
         return x
 

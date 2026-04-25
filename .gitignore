@@ -10,3 +10,15 @@ module/checkpoints
 output_inference
 
 module/checkpoint/*.pth
+visual_test
+CRC01_features_stream
+train_output.log
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Experiments and weights
+experiments/
+*.pth
