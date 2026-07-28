@@ -13,6 +13,7 @@ from torch.utils.data import Dataset, DataLoader, random_split
 from torch.optim import AdamW
 from torch.utils.tensorboard import SummaryWriter
 from XCellFormer import XCellFormer
+from morphology import compute_topk_retrieval, gather_topk_prototypes
 # from updated_models import TransformerEncoder
 
 
@@ -76,11 +77,17 @@ class HeMifDataset(Dataset):
         start_index,
         mif_channel,
         num_neg_samples=3,
+        topk=5,
+        retrieval_radius=32.0,
+        retrieval_alpha=0.5,
     ):
         self.task_id = task_id
         self.start_index = start_index
         self.mif_channel = mif_channel
         self.num_neg_samples = num_neg_samples
+        self.topk = topk
+        self.retrieval_radius = retrieval_radius
+        self.retrieval_alpha = retrieval_alpha
 
         self.he_files = [f for f in os.listdir(he_dir) if f.endswith(".pkl")]
         self.he_dir = he_dir
@@ -119,11 +126,41 @@ class HeMifDataset(Dataset):
         neg_coords = self._get_farthest_negative_samples(x, y)
         mif_neg = [load_pkl(self.mif_map[c]) for c in neg_coords]
 
+        he_features = he["features"][0]
+        mif_pos_features = mif_pos["features"][0]
+        he_descriptors = he.get("morphology_descriptors")
+        mif_descriptors = mif_pos.get("morphology_descriptors")
+        he_centroids = he.get("morphology_centroids")
+        mif_centroids = mif_pos.get("morphology_centroids")
+        if any(value is None for value in (he_descriptors, mif_descriptors, he_centroids, mif_centroids)):
+            raise KeyError(
+                "Morphology metadata is missing; rerun pre_extract_features.py to rebuild caches."
+            )
+        he_descriptors = torch.as_tensor(he_descriptors, dtype=torch.float32)
+        mif_descriptors = torch.as_tensor(mif_descriptors, dtype=torch.float32)
+        he_centroids = torch.as_tensor(he_centroids, dtype=torch.float32)
+        mif_centroids = torch.as_tensor(mif_centroids, dtype=torch.float32)
+        topk_indices, topk_scores = compute_topk_retrieval(
+            he_descriptors,
+            mif_descriptors,
+            he_centroids,
+            mif_centroids,
+            k=self.topk,
+            radius=self.retrieval_radius,
+            alpha=self.retrieval_alpha,
+        )
+        prototypes = torch.zeros_like(he_features)
+        n_query = min(len(topk_indices), prototypes.shape[0])
+        prototypes[:n_query] = gather_topk_prototypes(mif_pos_features, topk_indices)
+
         return {
-            "he_features": he["features"][0],
+            "he_features": he_features,
             "he_mask": he["mask"][0],
-            "mif_pos_features": mif_pos["features"][0],
+            "mif_pos_features": mif_pos_features,
             "mif_pos_mask": mif_pos["mask"][0],
+            "mif_prototypes": prototypes,
+            "topk_indices": torch.as_tensor(topk_indices, dtype=torch.long),
+            "topk_scores": torch.as_tensor(topk_scores, dtype=torch.float32),
             "mif_neg_features": [n["features"][0] for n in mif_neg],
             "mif_neg_mask": [n["mask"][0] for n in mif_neg],
             # ⭐ task meta
@@ -163,6 +200,9 @@ def main(args):
             start_index=args.start_index[t],
             mif_channel=args.mif_channel[t],
             num_neg_samples=args.num_neg_samples,
+            topk=args.topk,
+            retrieval_radius=args.retrieval_radius,
+            retrieval_alpha=args.retrieval_alpha,
         )
 
         train_size = int(0.9 * len(dataset))
@@ -213,6 +253,7 @@ def main(args):
                 he_mask = batch["he_mask"].to(device)
                 mif_pos = batch["mif_pos_features"].to(device)
                 mif_pos_mask = batch["mif_pos_mask"].to(device)
+                mif_prototypes = batch["mif_prototypes"].to(device)
 
                 mif_neg = [n.to(device) for n in batch["mif_neg_features"]]
                 mif_neg_mask = [n.to(device) for n in batch["mif_neg_mask"]]
@@ -224,6 +265,9 @@ def main(args):
                 )
                 mif_pos_valid = torch.cat(
                     [mif_pos[i][mif_pos_mask[i].bool()] for i in range(mif_pos.size(0))]
+                )
+                prototype_valid = torch.cat(
+                    [mif_prototypes[i][he_mask[i].bool()] for i in range(mif_prototypes.size(0))]
                 )
                 mif_neg_valid_list = []
 
@@ -251,10 +295,12 @@ def main(args):
                 ]
                 he_valid = he_valid[:min_len]
                 mif_pos_valid = mif_pos_valid[:min_len]
+                prototype_valid = prototype_valid[:min_len]
                 mif_neg_valid = mif_neg_valid[:min_len]
 
-                loss_mse = hungary_mse_loss(
-                    he_valid, mif_pos_valid, start_index, mif_channel
+                loss_mse = F.mse_loss(
+                    he_valid[:, start_index : start_index + mif_channel],
+                    prototype_valid[:, start_index : start_index + mif_channel],
                 )
 
                 he_anchor = he_valid_slice.mean(dim=0, keepdim=True)
@@ -305,6 +351,9 @@ if __name__ == "__main__":
     parser.add_argument("--lambda_mse", type=float, default=1.0)
     parser.add_argument("--lambda_contrast", type=float, default=1.0)
     parser.add_argument("--num_neg_samples", type=int, default=10)
+    parser.add_argument("--topk", type=int, default=5)
+    parser.add_argument("--retrieval_radius", type=float, default=32.0)
+    parser.add_argument("--retrieval_alpha", type=float, default=0.5)
 
     args = parser.parse_args()
     main(args)

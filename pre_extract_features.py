@@ -23,6 +23,7 @@ warnings.filterwarnings("ignore", message="channels deprecated in v4.0.1+.*")
 from utils import load_cellpose_model
 from module.TransPath.ctran import ctranspath
 from module.ModalEncoder.cell_density_extractor import CellDensityExtractor
+from morphology import extract_morphology_descriptors
 
 
 # =========================
@@ -208,6 +209,9 @@ def extract_he_feature(he_path, cache_dir, device, cellpose_model, ctp_model, lo
 
         # 4. 后续处理 (将 masks 转为 Tensor 并提取特征)
         # 注意：此时 masks 变量保证是 numpy 数组
+        morphology_descriptors, centroids, descriptor_labels = extract_morphology_descriptors(
+            img_np, masks
+        )
         masks_tensor = torch.from_numpy(masks).to(device).to(torch.int32)
         
         ctp_model.eval()
@@ -219,6 +223,7 @@ def extract_he_feature(he_path, cache_dir, device, cellpose_model, ctp_model, lo
         ])
 
         cell_features = []
+        feature_labels = []
         unique_labels = torch.unique(masks_tensor)
         unique_labels = unique_labels[unique_labels != 0]
 
@@ -246,6 +251,7 @@ def extract_he_feature(he_path, cache_dir, device, cellpose_model, ctp_model, lo
                     continue
 
                 cell_features.append(cell_img_feat.squeeze(0).cpu().numpy())
+                feature_labels.append(int(label.item()))
             except Exception as e:
                 # 记录单个细胞处理失败，但不中断整体流程
                 continue
@@ -266,10 +272,29 @@ def extract_he_feature(he_path, cache_dir, device, cellpose_model, ctp_model, lo
             feat_arr[i] = f
             mask_arr[i] = 1.0
 
+        descriptor_by_label = {
+            int(label): morphology_descriptors[i]
+            for i, label in enumerate(descriptor_labels)
+        }
+        centroid_by_label = {
+            int(label): centroids[i]
+            for i, label in enumerate(descriptor_labels)
+        }
+        saved_descriptors = np.asarray(
+            [descriptor_by_label[label] for label in feature_labels[:max_cells_limit]],
+            dtype=np.float32,
+        )
+        saved_centroids = np.asarray(
+            [centroid_by_label[label] for label in feature_labels[:max_cells_limit]],
+            dtype=np.float32,
+        )
         save_data = {
             "features": torch.from_numpy(feat_arr).unsqueeze(0),
             "mask": torch.from_numpy(mask_arr).unsqueeze(0),
-            "cell_masks": masks # 保存原始的 numpy masks
+            "cell_masks": masks, # 保存原始的 numpy masks
+            "morphology_descriptors": saved_descriptors,
+            "morphology_centroids": saved_centroids,
+            "morphology_labels": np.asarray(feature_labels[:max_cells_limit], dtype=np.int32),
         }
 
         with open(cache_file, "wb") as f:
@@ -297,6 +322,9 @@ def extract_mif_feature(
         density = extractor.process_image_pair(
             imgs, [0] + [1] * (len(imgs) - 1), cell_masks
         )
+        morphology_descriptors, centroids, descriptor_labels = extract_morphology_descriptors(
+            imgs[0], cell_masks
+        )
 
         max_cells = 255
         feat_dim = density.shape[1]
@@ -312,6 +340,9 @@ def extract_mif_feature(
                 {
                     "features": torch.from_numpy(feat_arr).unsqueeze(0),
                     "mask": torch.from_numpy(mask_arr).unsqueeze(0),
+                    "morphology_descriptors": morphology_descriptors[:max_cells],
+                    "morphology_centroids": centroids[:max_cells],
+                    "morphology_labels": descriptor_labels[:max_cells],
                 },
                 f,
             )
